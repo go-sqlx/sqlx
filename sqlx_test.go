@@ -63,6 +63,7 @@ func ConnectAll() {
 	}
 
 	if TestPostgres {
+		fmt.Println("Postgres Connection String", pgdsn)
 		pgdb, err = Connect("postgres", pgdsn)
 		if err != nil {
 			fmt.Printf("Disabling PG tests:\n    %v\n", err)
@@ -75,7 +76,7 @@ func ConnectAll() {
 	if TestMysql {
 		mysqldb, err = Connect("mysql", mydsn)
 		if err != nil {
-			fmt.Printf("Disabling MySQL tests:\n    %v", err)
+			fmt.Printf("Disabling MySQL tests:\n    %v\n", err)
 			TestMysql = false
 		}
 	} else {
@@ -85,7 +86,7 @@ func ConnectAll() {
 	if TestSqlite {
 		sldb, err = Connect("sqlite3", sqdsn)
 		if err != nil {
-			fmt.Printf("Disabling SQLite:\n    %v", err)
+			fmt.Printf("Disabling SQLite:\n    %v\n", err)
 			TestSqlite = false
 		}
 	} else {
