@@ -44,7 +44,7 @@ jobs:
         
       - name: "Run Tests"
         env:
-          SQLX_POSTGRES_DSN: "postgres://postgres:@postgres/sqlxtest?sslmode=disable"
+          SQLX_POSTGRES_DSN: "postgres://postgres:postgres@postgres:5432/sqlxtest?sslmode=disable"
           SQLX_SQLITE_DSN: "$HOME/sqlxtest.db"
         run: |
           gotestsum --format testname ./...
