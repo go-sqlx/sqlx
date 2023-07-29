@@ -16,7 +16,6 @@ jobs:
         image: postgres
         # Provide the password for postgres
         env:
-          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: sqlxtest
         # Set health checks to wait until postgres has started
         options: >-
@@ -44,7 +43,7 @@ jobs:
         
       - name: "Run Tests"
         env:
-          SQLX_POSTGRES_DSN: "postgres://postgres:postgres@postgres:5432/sqlxtest?sslmode=disable"
+          SQLX_POSTGRES_DSN: "postgres://postgres:@postgres:5432/sqlxtest?sslmode=disable"
           SQLX_SQLITE_DSN: "~/sqlxtest.db"
         run: |
           gotestsum --format testname ./...
