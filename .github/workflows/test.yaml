@@ -17,6 +17,7 @@ jobs:
         # Provide the password for postgres
         env:
           POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: sqlxtest
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
@@ -39,6 +40,7 @@ jobs:
         
       - name: "Run Tests"
         env:
-          SQLX_POSTGRES_DSN: postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable
+          SQLX_POSTGRES_DSN: "postgres://postgres:@postgres/sqlxtest?sslmode=disable"
+          SQLX_SQLITE_DSN: "$HOME/sqlxtest.db"
         run: |
-          go test
+          go test ./...
