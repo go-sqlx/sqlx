@@ -8,6 +8,22 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
     steps:
       - name: "Checkout Code"
         uses: actions/checkout@v2
@@ -22,5 +38,7 @@ jobs:
                 go mod download
         
       - name: "Run Tests"
+        env:
+          SQLX_POSTGRES_DSN: postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable
         run: |
           go test
