@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout Code"
-        uses: actions/checkout@2
+        uses: actions/checkout@v2
 
       - name: "Install Golang"
         uses: actions/setup-go@v4
