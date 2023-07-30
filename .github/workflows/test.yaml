@@ -10,23 +10,29 @@ jobs:
     runs-on: ubuntu-latest
     
     services:
-      # Label used to access the service container
       postgres:
-        # Docker Hub image
         image: postgres
         ports:
           - 5432:5432
-        # Provide the password for postgres
         env:
           POSTGRES_USER: postgres
           POSTGRES_DB: sqlxtest
           POSTGRES_PASSWORD: postgres
-        # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+      mysql:
+        # Docker Hub image
+        image: mysql
+        ports:
+          - 3306:3306
+        # Provide the password for postgres
+        env:
+          MYSQL_USER: mysql
+          MYSQL_DB: sqlxtest
+          MYSQL_PASSWORD: mysql
     
     steps:
       - name: "Checkout Code"
@@ -48,6 +54,7 @@ jobs:
       - name: "Run Tests"
         env:
           SQLX_POSTGRES_DSN: "postgres://postgres:postgres@127.0.0.1:5432/sqlxtest?sslmode=disable"
+          SQLX_MYSQL_DSN: "mariadb:mariadb@127.0.0.1:3306/sqlxtest"
           SQLX_SQLITE_DSN: "./sqlxtest.sqlite"
         run: |
           gotestsum --format testname ./...
