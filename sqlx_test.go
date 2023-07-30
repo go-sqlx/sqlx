@@ -93,7 +93,7 @@ func ConnectAll() {
 	}
 
 	if didRunTests == false {
-		t.Errorf("No Database connected to")
+		panic("No Database connected to")
 	}
 }
 
