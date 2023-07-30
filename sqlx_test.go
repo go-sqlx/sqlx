@@ -95,6 +95,8 @@ func ConnectAll() {
 	if didRunTests == false {
 		panic("No Database connected to")
 	}
+
+	panic(fmt.Sprintf("Databses: postgres %t mysql %t sqlite %t\n", TestPostgres, TestMysql, TestSqlite))
 }
 
 type Schema struct {
