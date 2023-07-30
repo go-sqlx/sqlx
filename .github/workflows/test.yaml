@@ -14,6 +14,8 @@ jobs:
       postgres:
         # Docker Hub image
         image: postgres
+        ports:
+          - 5432:5432
         # Provide the password for postgres
         env:
           POSTGRES_USER: postgres
@@ -45,7 +47,7 @@ jobs:
         
       - name: "Run Tests"
         env:
-          SQLX_POSTGRES_DSN: "postgres://postgres:postgres@postgres:5432/sqlxtest?sslmode=disable"
-          SQLX_SQLITE_DSN: "~/sqlxtest.db"
+          SQLX_POSTGRES_DSN: "postgres://postgres:postgres@127.0.0.1:5432/sqlxtest?sslmode=disable"
+          SQLX_SQLITE_DSN: "/tmp/sqlxtests/sqlxtest.sqlite"
         run: |
           gotestsum --format testname ./...
