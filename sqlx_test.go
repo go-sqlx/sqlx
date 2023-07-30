@@ -62,35 +62,38 @@ func ConnectAll() {
 		mydsn += "?parseTime=true"
 	}
 
+	var didRunTests bool = false
 	if TestPostgres {
 		fmt.Println("Postgres Connection String", pgdsn)
 		pgdb, err = Connect("postgres", pgdsn)
 		if err != nil {
 			fmt.Printf("Disabling PG tests:\n    %v\n", err)
 			TestPostgres = false
+		} else {
+			didRunTests = true
 		}
-	} else {
-		fmt.Println("Disabling Postgres tests.")
 	}
-
 	if TestMysql {
 		mysqldb, err = Connect("mysql", mydsn)
 		if err != nil {
 			fmt.Printf("Disabling MySQL tests:\n    %v\n", err)
 			TestMysql = false
+		} else {
+			didRunTests = true
 		}
-	} else {
-		fmt.Println("Disabling MySQL tests.")
 	}
-
 	if TestSqlite {
 		sldb, err = Connect("sqlite3", sqdsn)
 		if err != nil {
 			fmt.Printf("Disabling SQLite:\n    %v\n", err)
 			TestSqlite = false
+		} else {
+			didRunTests = true
 		}
-	} else {
-		fmt.Println("Disabling SQLite tests.")
+	}
+
+	if didRunTests == false {
+		t.Errorf("No Database connected to")
 	}
 }
 
