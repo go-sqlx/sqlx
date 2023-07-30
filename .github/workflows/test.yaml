@@ -31,8 +31,9 @@ jobs:
         # Provide the password for postgres
         env:
           MYSQL_USER: mysql
-          MYSQL_DB: sqlxtest
+          MYSQL_DATABASE: sqlxtest
           MYSQL_PASSWORD: mysql
+          MYSQL_ROOT_PASSWORD: mysql
         options: >-
           --health-cmd="mysqladmin ping" 
           --health-interval=10s 
