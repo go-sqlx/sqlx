@@ -63,7 +63,6 @@ func ConnectAll() {
 
 	var didRunTests bool = false
 	if TestPostgres {
-		fmt.Println("Postgres Connection String", pgdsn)
 		pgdb, err = Connect("postgres", pgdsn)
 		if err != nil {
 			fmt.Printf("Disabling PG tests:\n    %v\n", err)
