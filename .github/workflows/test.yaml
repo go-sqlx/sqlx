@@ -43,9 +43,6 @@ jobs:
       - name: "Checkout Code"
         uses: actions/checkout@v3
 
-      - name: "setup mysql"
-        run: sudo /etc/init.d/mysql start mysql -h 127.0.0.1 --port 33306 -e 'CREATE DATABASE sqlxtest;' -uroot -pmysql
-
       - name: "Install Golang"
         uses: actions/setup-go@v4
         with:
@@ -66,4 +63,3 @@ jobs:
           SQLX_SQLITE_DSN: "./sqlxtest.sqlite"
         run: |
           gotestsum --format testname ./...
-

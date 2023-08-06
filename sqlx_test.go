@@ -76,6 +76,7 @@ func ConnectAll() {
 		if err != nil {
 			fmt.Printf("Disabling MySQL tests:\n    %v\n", err)
 			TestMysql = false
+			panic(fmt.Sprintf("Mysql Pipeline did not run! \n\v\n", err))
 		} else {
 			didRunTests = true
 		}
