@@ -25,7 +25,7 @@ jobs:
       mysql:
         image: mysql
         ports:
-          - 3306:3306
+          - 33306:3306
         env:
           MYSQL_USER: mysql
           MYSQL_DATABASE: sqlxtest
@@ -39,7 +39,10 @@ jobs:
 
     steps:
       - name: "Checkout Code"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: "setup mysql"
+        run: sudo /etc/init.d/mysql start mysql -h 127.0.0.1 --port 33306 -e 'CREATE DATABASE sqlxtest;' -uroot -pmysql
 
       - name: "Install Golang"
         uses: actions/setup-go@v4
@@ -57,7 +60,8 @@ jobs:
       - name: "Run Tests"
         env:
           SQLX_POSTGRES_DSN: "postgres://postgres:postgres@127.0.0.1:5432/sqlxtest?sslmode=disable"
-          SQLX_MYSQL_DSN: ""
+          SQLX_MYSQL_DSN: "root:mysql@tcp(127.0.0.1:33306)/sqlxtest?parseTime=true"
           SQLX_SQLITE_DSN: "./sqlxtest.sqlite"
         run: |
           gotestsum --format testname ./...
+
