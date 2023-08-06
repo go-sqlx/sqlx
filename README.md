@@ -9,6 +9,7 @@ Currently still work on the project setup so please come back later again :)
 ---
 
 # go/sqlx
+[![Code-Testing](https://github.com/go-sqlx/sqlx/actions/workflows/test.yaml/badge.svg)](https://github.com/go-sqlx/sqlx/actions/workflows/test.yaml)
 
 Quick dating the lib:
 - **🧐 What is sqlx?**  
