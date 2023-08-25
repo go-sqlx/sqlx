@@ -32,18 +32,18 @@ Quick dating the lib:
 
 We support older versions from v1.2.0 to 1.3.5
 
-```diff
+```
     module ...
 
     go 1.20
 
-    + replace github.com/jmoiron/sqlx v1.3.5 => github.com/go-sqlx/sqlx v1.3.5
-    + replace github.com/jmoiron/sqlx v1.3.4 => github.com/go-sqlx/sqlx v1.3.4
-    + replace github.com/jmoiron/sqlx v1.3.3 => github.com/go-sqlx/sqlx v1.3.3
-    + replace github.com/jmoiron/sqlx v1.3.2 => github.com/go-sqlx/sqlx v1.3.2
-    + replace github.com/jmoiron/sqlx v1.3.1 => github.com/go-sqlx/sqlx v1.3.1
-    + replace github.com/jmoiron/sqlx v1.3.0 => github.com/go-sqlx/sqlx v1.3.0
-    + replace github.com/jmoiron/sqlx v1.2.0 => github.com/go-sqlx/sqlx v1.2.0
+    replace github.com/jmoiron/sqlx v1.3.5 => github.com/go-sqlx/sqlx v1.3.5
+    replace github.com/jmoiron/sqlx v1.3.4 => github.com/go-sqlx/sqlx v1.3.4
+    replace github.com/jmoiron/sqlx v1.3.3 => github.com/go-sqlx/sqlx v1.3.3
+    replace github.com/jmoiron/sqlx v1.3.2 => github.com/go-sqlx/sqlx v1.3.2
+    replace github.com/jmoiron/sqlx v1.3.1 => github.com/go-sqlx/sqlx v1.3.1
+    replace github.com/jmoiron/sqlx v1.3.0 => github.com/go-sqlx/sqlx v1.3.0
+    replace github.com/jmoiron/sqlx v1.2.0 => github.com/go-sqlx/sqlx v1.2.0
 
     require(
         ...
