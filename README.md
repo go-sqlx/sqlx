@@ -1,12 +1,5 @@
-# This is a fork from the [original repo](https://github.com/jmoiron/sqlx) to keep some maintanance
-Hi there,
+⚠️ This is a fork from the [original repo](https://github.com/jmoiron/sqlx) to keep some maintanance
 
-I am a bit sad that the original developer abandoned the project and does not merge any more fixes and stuff, so I try to bring it to at least some life again. I would love to get some support doing that, so if you're interested in becoming a maintainer, feel free to contact me [@uvulpos](https://github.com/uvulpos)
-
-## 🚧 NOT READY TO USE YET
-Currently still work on the project setup so please come back later again :)
-
----
 
 # go/sqlx
 [![Code-Testing](https://github.com/go-sqlx/sqlx/actions/workflows/test.yaml/badge.svg)](https://github.com/go-sqlx/sqlx/actions/workflows/test.yaml)
