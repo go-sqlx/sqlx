@@ -30,20 +30,15 @@ Quick dating the lib:
 
 ### Older Versions from jmoiron
 
-We support older versions from v1.2.0 to 1.3.5
+Jmoirons version 1.3.5 is equal with our version 1.3.6  
+(old releases won't work of this repo and or just here for documentation purposes)
 
-```
+```diff
     module ...
 
     go 1.20
 
-    replace github.com/jmoiron/sqlx v1.3.5 => github.com/go-sqlx/sqlx v1.3.5
-    replace github.com/jmoiron/sqlx v1.3.4 => github.com/go-sqlx/sqlx v1.3.4
-    replace github.com/jmoiron/sqlx v1.3.3 => github.com/go-sqlx/sqlx v1.3.3
-    replace github.com/jmoiron/sqlx v1.3.2 => github.com/go-sqlx/sqlx v1.3.2
-    replace github.com/jmoiron/sqlx v1.3.1 => github.com/go-sqlx/sqlx v1.3.1
-    replace github.com/jmoiron/sqlx v1.3.0 => github.com/go-sqlx/sqlx v1.3.0
-    replace github.com/jmoiron/sqlx v1.2.0 => github.com/go-sqlx/sqlx v1.2.0
++   replace github.com/jmoiron/sqlx v1.3.5 => github.com/go-sqlx/sqlx v1.3.6
 
     require(
         ...
