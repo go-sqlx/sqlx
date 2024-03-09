@@ -53,6 +53,30 @@ func TestCompileQuery(t *testing.T) {
 			T: `SELECT @name := "name", @p1, @p2, @p3`,
 			V: []string{"age", "first", "last"},
 		},
+		{
+			Q: `SELECT * FROM users WHERE id = :id AND name = ':name'`,
+			R: `SELECT * FROM users WHERE id = ? AND name = ':name'`,
+			D: `SELECT * FROM users WHERE id = $1 AND name = ':name'`,
+			T: `SELECT * FROM users WHERE id = @p1 AND name = ':name'`,
+			N: `SELECT * FROM users WHERE id = :id AND name = ':name'`,
+			V: []string{"id"},
+		},
+		{
+			Q: `SELECT * FROM users WHERE id = :id AND name = '":name"'`,
+			R: `SELECT * FROM users WHERE id = ? AND name = '":name"'`,
+			D: `SELECT * FROM users WHERE id = $1 AND name = '":name"'`,
+			T: `SELECT * FROM users WHERE id = @p1 AND name = '":name"'`,
+			N: `SELECT * FROM users WHERE id = :id AND name = '":name"'`,
+			V: []string{"id"},
+		},
+		{
+			Q: `SELECT * FROM users WHERE id = :id AND name = '\':name\''`,
+			R: `SELECT * FROM users WHERE id = ? AND name = '\':name\''`,
+			D: `SELECT * FROM users WHERE id = $1 AND name = '\':name\''`,
+			T: `SELECT * FROM users WHERE id = @p1 AND name = '\':name\''`,
+			N: `SELECT * FROM users WHERE id = :id AND name = '\':name\''`,
+			V: []string{"id"},
+		},
 		/* This unicode awareness test sadly fails, because of our byte-wise worldview.
 		 * We could certainly iterate by Rune instead, though it's a great deal slower,
 		 * it's probably the RightWay(tm)

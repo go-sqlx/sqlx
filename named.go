@@ -332,14 +332,58 @@ func compileNamedQuery(qs []byte, bindType int) (query string, names []string, e
 	names = make([]string, 0, 10)
 	rebound := make([]byte, 0, len(qs))
 
+	// the type of quote (' or ") that started the string literal
+	var quoteLeft byte
+	inString := false
+	var escaped bool
 	inName := false
 	last := len(qs) - 1
 	currentVar := 1
 	name := make([]byte, 0, 10)
 
 	for i, b := range qs {
-		// a ':' while we're in a name is an error
-		if b == ':' {
+		if b == '\'' || b == '"' {
+			// start of a string literal
+			if !inString {
+				inString = true
+				quoteLeft = b
+				rebound = append(rebound, b)
+
+				continue
+			}
+
+			// ignore the quote if it is escaped
+			if i > 0 && qs[i-1] == '\\' {
+				rebound = append(rebound, b)
+				continue
+			}
+
+			// end of the string literal if matching quote is found
+			if quoteLeft == b {
+				inString = false
+				rebound = append(rebound, b)
+				continue
+			}
+
+			// handle other quotes inside the string literal (ex: "'name'" or '"name"')
+			rebound = append(rebound, b)
+			continue
+
+			// a ':' while we're in a name is an error
+		} else if b == ':' {
+			if inString {
+				// mark as escaped if '::' sequence is found
+				if i > 0 && qs[i-1] == ':' && !escaped {
+					escaped = true
+					continue
+				}
+
+				// if not escaped, reset the flag and append colon as it's part of the string
+				rebound = append(rebound, b)
+				escaped = false
+				continue
+			}
+
 			// if this is the second ':' in a '::' escape sequence, append a ':'
 			if inName && i > 0 && qs[i-1] == ':' {
 				rebound = append(rebound, ':')
@@ -400,6 +444,10 @@ func compileNamedQuery(qs []byte, bindType int) (query string, names []string, e
 			// this is a normal byte and should just go onto the rebound query
 			rebound = append(rebound, b)
 		}
+	}
+
+	if inString {
+		return query, names, errors.New("string literal not closed, missing terminating quote")
 	}
 
 	return string(rebound), names, err
