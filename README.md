@@ -25,8 +25,9 @@ Quick dating the lib:
 
 ### Older Versions from jmoiron
 
-Jmoirons version 1.3.5 is equal with our version 1.3.6  
-(old releases won't work of this repo and or just here for documentation purposes)
+Jmoirons version 1.3.5 is equal with our version 1.3.6 
+> ⚠️ not the newest version, but from there you can migrate up  
+> (old releases won't work of this repo and or just here for documentation purposes)
 
 ```diff
     module ...
