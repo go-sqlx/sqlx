@@ -5,8 +5,7 @@ import (
 	"database/sql/driver"
 	"errors"
 	"fmt"
-
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"reflect"
 	"strings"
@@ -706,7 +705,7 @@ func LoadFile(e Execer, path string) (*sql.Result, error) {
 	if err != nil {
 		return nil, err
 	}
-	contents, err := ioutil.ReadFile(realpath)
+	contents, err := os.ReadFile(realpath)
 	if err != nil {
 		return nil, err
 	}
