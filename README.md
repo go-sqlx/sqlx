@@ -1,5 +1,10 @@
+> [!CAUTION]
+> The official repository is getting updates again so meanwhile this fork will be no longer maintained. If the other repo is getting no more updates again, this fork will be updated again. Happy hacking 🙂
 
-⚠️ This is a pr-maintained fork from the [original repo](https://github.com/jmoiron/sqlx) to keep some maintanance
+---
+
+> [!NOTE] 
+> This is a pr-maintained fork from the [original repo](https://github.com/jmoiron/sqlx) to keep some maintanance
 
 # go/sqlx
 
