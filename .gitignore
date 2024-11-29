@@ -23,3 +23,6 @@ _testmain.go
 *.exe
 tags
 environ
+
+.env
+.envrc
